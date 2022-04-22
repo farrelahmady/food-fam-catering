@@ -1,0 +1,16 @@
+<div class="menu-container">
+  <div class="row">
+    <% @foods.each do |food|%>
+      <div class="col-4">
+        <h5><%= food.name %></h5>
+        <p><%= food.description %></p>
+        <span><%= food.price %></span>
+        <%= form_with model: @order_item, local: false do |f| %>
+          <%= f.hidden_field :foods_id, value: food.id %>
+          <%= f.number_field :quantity, value: 1, min: 1 %>
+          <%= f.submit "Add to Cart" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
